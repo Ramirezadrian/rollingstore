@@ -1,6 +1,14 @@
+import ItemCount from "./ItemCount";
+import React, {useState} from "react";
+
 const ItemListContainer = ({greeting}) =>{
+
+    
     return(
-        <h1>{greeting}</h1>
+        <div>
+            <h1>{greeting="Bienvenidos a Rolling Store"}</h1>
+            <ItemCount stock="20" initial="1" />
+        </div>    
     )
 }
 

@@ -15,3 +15,16 @@ code {
 .imgCarrito{
   max-height: 8vh;
 }
+
+.itemCount h4{
+font-size: 14px;
+color: crimson;
+}
+
+.itemCount span{
+  padding: 10px;
+}
+
+.btnAdd{
+  padding: 4px;
+}
