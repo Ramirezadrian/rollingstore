@@ -18,10 +18,11 @@ function ItemCount({stock, initial}){
     }
 
     const onAdd = () =>{
-        if(st>= contador){
+        console.log("Producto agregado");
+      /*   if(st>= contador){ */
         setStock(st - contador);
-        setContador(st -contador);
-        }
+       /*  setContador(st -contador); */
+       /*  } */
     }
 
     return(

@@ -1,8 +1,21 @@
 import ItemCount from "./ItemCount";
 import React, {useState} from "react";
+import { getProducts } from "../products/products";
 
 const ItemListContainer = ({greeting}) =>{
 
+  /*  const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const list = getProducts();
+        list.then(list => {
+            setProducts(list);
+        })
+
+        return (() => {
+            setProducts([]);
+        })
+    }, [])*/
     
     return(
         <div>
