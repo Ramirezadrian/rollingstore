@@ -28,3 +28,6 @@ color: crimson;
 .btnAdd{
   padding: 4px;
 }
+.ListGroup{
+  display: flex;
+}
