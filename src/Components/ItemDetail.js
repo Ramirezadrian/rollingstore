@@ -6,17 +6,20 @@ const ItemDetail = ({product}) => {
 
         <div className="CardItemDet">
         <div className="ContainerItem">
-            <h2 className="ItemHeader">
+            <h2 className="hDet">
+                Detalle del producto
+            </h2>
+            <h2 className="ItemHeaderDet">
                 {product.name}
             </h2>
         </div>
         <img src={product.img} alt={product.name} className="ItemImgDet"/>
       
         <p className="InfoDet">
-            Detalle: {product.detail}
+         {product.detail}
            
         </p>
-        <p className="Info">
+        <p className="precioDet">
         Precio: {product.price}
         </p>
         

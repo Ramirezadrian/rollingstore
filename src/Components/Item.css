@@ -12,8 +12,18 @@
     background-color: rgb(174, 241, 147);
     border: 1px solid #1ef3b3;
     border-radius: 15px;
+    display:inline-block;
 }
+.hDet{
+    font-weight: 800;
+    margin: 20px;
 
+}
+.precioDet{
+    font-size: 24px;
+    color:crimson;
+    font-weight: 600;
+}
 .ContainerItem {
     display: flex;
     flex-direction: column;
@@ -24,6 +34,12 @@
 .ItemHeader {
     display: flex;
     justify-content: center;
+}
+.ItemHeaderDet{
+    display: flex;
+    justify-content: center;
+    color: crimson;
+    margin: 20px;
 }
 
 .Info {
