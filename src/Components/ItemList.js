@@ -1,7 +1,7 @@
 import Item from "./Item";
 import '../index.css'
 
-const ItemList = ({products}) => {
+const ItemList = ({products = []}) => {
     console.log("Productos de ItemList: ", products);
     return (
         <ul className="ListGroup">

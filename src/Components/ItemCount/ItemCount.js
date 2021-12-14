@@ -27,7 +27,7 @@ function ItemCount({stock, initial}){
 
     return(
         <div className="itemCount">
-            <h4>Algo para Comprar</h4>
+           
             <button onClick = {restarClick}>-</button>
             <span>{contador}</span>
             <button onClick ={sumarClick}>+</button>
