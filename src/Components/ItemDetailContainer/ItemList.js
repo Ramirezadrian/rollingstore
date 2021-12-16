@@ -1,5 +1,5 @@
 import Item from "./Item";
-import '../index.css'
+import '../../index.css';
 
 const ItemList = ({products = []}) => {
     console.log("Productos de ItemList: ", products);

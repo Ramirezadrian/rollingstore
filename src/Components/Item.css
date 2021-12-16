@@ -90,3 +90,13 @@
     object-fit: cover;
     object-position: center;
 }
+.btnTerminarCompra{
+    display: inline-block;
+    margin: 10px;
+    background-color:crimson;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    border: black;
+    border-radius: 4px;
+}

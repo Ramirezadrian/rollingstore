@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './Components/NavBar'
-import ItemListContainer from './Components/ItemListContainer/ItemListContainer';
-import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer';
-import ItemCount from './Components/ItemCount/ItemCount';
+import ItemListContainer from './Components/itemListContainer/ItemListContainer';
+import ItemDetailContainer from './Components/itemDetailContainer/ItemDetailContainer';
+import ItemCount from './Components/itemCount/ItemCount';
 
 
 
