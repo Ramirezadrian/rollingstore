@@ -1,7 +1,6 @@
-import ItemCount from "../itemCount/ItemCount";
 import React, {useState, useEffect} from "react";
 import { getProducts , getProductByCategory} from "../../products/products";
-import ItemList from "../itemDetailContainer/ItemList";
+import ItemList from "../itemList/ItemList";
 import { useParams } from "react-router-dom";
 
 

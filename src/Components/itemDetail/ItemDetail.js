@@ -31,7 +31,7 @@ const ItemDetail = ({product}) => {
         <p className="precioDet">
         Precio: {product.price}
         </p>
-        {count == 0 ? <ItemCount stock={product.stock} initial = "1" onConfirm={onAdd}/>: <></> }
+        {count === 0 ? <ItemCount stock={product.stock} initial = "1" onConfirm={onAdd}/>: <></> }
         <div className = "btnTerminarCompra">
         <Link to="/cart">Terminar Compra</Link>
         </div>
