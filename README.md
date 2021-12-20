@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Rolling Store
+
+Este proyecto es una e-commerce creada enteramente con React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
