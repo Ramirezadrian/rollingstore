@@ -3,16 +3,16 @@ import './App.css';
 import NavBar from './Components/NavBar'
 import ItemListContainer from './Components/itemListContainer/ItemListContainer';
 import ItemDetailContainer from './Components/itemDetailContainer/ItemDetailContainer';
-import ItemCount from './Components/itemCount/ItemCount';
-/* import { useContext } from "react";*/
-import CartContext from './Components/cartContext/CartContext';
+import CartContextProvider from './Components/cartContext/CartContext';
 
 
 
 function App() {
-    return ( <div className = "App">
-        <BrowserRouter> 
-        <CartContext>
+    return ( 
+    
+    <div className = "App">
+        <CartContextProvider>
+            <BrowserRouter> 
                 <NavBar />
                 <Switch>
                     <Route exact path='/'>
@@ -24,11 +24,10 @@ function App() {
                     <Route path='/detail/:paramId'>
                         <ItemDetailContainer />
                     </Route>    
-                    <ItemCount />
                 </Switch>
-        </CartContext>        
-        </BrowserRouter>
-            </div>
+            </BrowserRouter>
+        </CartContextProvider>        
+    </div>
     );
 }
 export default App;

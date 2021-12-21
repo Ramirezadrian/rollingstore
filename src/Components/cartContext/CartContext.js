@@ -1,24 +1,24 @@
-import React, {useState, useContext} from "react";
+import React, {useState} from "react";
 
 const Context = React.createContext();
 
-export const CardContext = ({children})=>{
+export const CardContextProvider = ({children})=>{
 
-    const [quantity, setQuantity] = useState(0);
+    const [carrito, setCarrito]= useState();
 
-    const [productosAgregados, setProductosAgregados]= useState([]);
 
     const addItem = (item,quantity)=>{
 
-        if (isInCart(item.id)){
-            setProductosAgregados(item);
+       /*  if (isInCart(item.id)){
+            setCarrito(item);
         }else{
             item.quantity += quantity;
-        setProductosAgregados(item);
+        setCarrito(item);
      
+    } */
+    setCarrito(item);
+    console.log(carrito);
     }
-    console.log(item + item.quantity);
-}
 
     const removeItem = (itemId) =>{
 
@@ -29,16 +29,13 @@ export const CardContext = ({children})=>{
     }
 
     const isInCart = (itemId) =>{
-        const existe = productosAgregados.some(producto => producto.id === itemId);
+        const existe = carrito.some(producto => producto.id === itemId);
         return existe;
     }
 
     return(
         <Context.Provider value={{
-            carrito: {
-                productosAgregados
-            },
-            addItem
+            carrito, addItem, removeItem, clear
         }}>
             {children}
         </Context.Provider>
