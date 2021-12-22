@@ -2,9 +2,9 @@ import React, {useState} from "react";
 
 const Context = React.createContext();
 
-export const CardContextProvider = ({children})=>{
+export const CartContextProvider = ({children})=>{
 
-    const [carrito, setCarrito]= useState();
+    const [cart, setCart]= useState();
 
 
     const addItem = (item,quantity)=>{
@@ -16,8 +16,8 @@ export const CardContextProvider = ({children})=>{
         setCarrito(item);
      
     } */
-    setCarrito(item);
-    console.log(carrito);
+    setCart(item);
+    console.log(cart);
     }
 
     const removeItem = (itemId) =>{
@@ -29,13 +29,13 @@ export const CardContextProvider = ({children})=>{
     }
 
     const isInCart = (itemId) =>{
-        const existe = carrito.some(producto => producto.id === itemId);
-        return existe;
+        
+        return cart.some(product => product.id === itemId)
     }
 
     return(
         <Context.Provider value={{
-            carrito, addItem, removeItem, clear
+            cart, addItem, removeItem, clear
         }}>
             {children}
         </Context.Provider>
