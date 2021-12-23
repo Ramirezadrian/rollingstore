@@ -14,13 +14,15 @@ export const CartContextProvider = ({children})=>{
         if (flag){
             let repetido  = cart.find(e=> e.item === item );
             repetido.quantity += quantity;
-            let cartSinRepetido = cart.find(e=> e.item !== item);
+            let cartSinRepetido = cart.filter(e=> e.item !== item);
             setCart([...cartSinRepetido, repetido]);
         }else{
             setCart([...cart,{item:item,quantity:quantity}]);
         }
         sumarCantidades();
+        
     console.log(cart);
+    console.log(cantidadTotal);
     }
 
     const sumarCantidades = () =>{
@@ -32,8 +34,10 @@ export const CartContextProvider = ({children})=>{
     }
 
     const removeItem = (item) =>{
-        let cartSinItem = cart.find(e=> e.item !== item);
+        
+        let cartSinItem = cart.filter(e=> e.item !== item);
         setCart(cartSinItem);
+        sumarCantidades();
     }
 
     const clear = () =>{
@@ -42,7 +46,7 @@ export const CartContextProvider = ({children})=>{
 
     const isInCart = (item) =>{
         
-        return cart.some(product => product === item)
+        return cart.some(product => product.item === item)
     }
 
     return(

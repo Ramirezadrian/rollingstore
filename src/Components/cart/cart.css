@@ -3,3 +3,8 @@
     max-height: 200px;
 
 }
+
+.btnTbl{
+    border-radius: 50px;
+    text-align: center;
+}
