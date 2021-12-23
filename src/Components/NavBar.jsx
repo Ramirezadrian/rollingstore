@@ -7,6 +7,7 @@ import CartContext from './cartContext/CartContext';
 const NavBar =() => {
 
   const {cart, cantidadTotal} = useContext(CartContext);
+
 return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="container-fluid">
@@ -36,7 +37,7 @@ return (
         </li>
       
       </ul>
-      <CartWidget/>
+      <Link to ="/cart"><CartWidget/></Link>
       <div>
         <span>{cantidadTotal}</span>
       </div>

@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar'
 import ItemListContainer from './Components/itemListContainer/ItemListContainer';
 import ItemDetailContainer from './Components/itemDetailContainer/ItemDetailContainer';
 import {CartContextProvider} from './Components/cartContext/CartContext';
+import Cart from './Components/cart/Cart';
 
 
 
@@ -24,6 +25,9 @@ function App() {
                     <Route path='/detail/:paramId'>
                         <ItemDetailContainer />
                     </Route>    
+                    <Route exact path = '/cart'>
+                        <Cart/>
+                    </Route>
                 </Switch>
             </BrowserRouter>
         </CartContextProvider>        

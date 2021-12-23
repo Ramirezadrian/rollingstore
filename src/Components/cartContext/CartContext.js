@@ -31,12 +31,13 @@ export const CartContextProvider = ({children})=>{
         setCantidadTotal(subTotal);
     }
 
-    const removeItem = (itemId) =>{
-
+    const removeItem = (item) =>{
+        let cartSinItem = cart.find(e=> e.item !== item);
+        setCart(cartSinItem);
     }
 
     const clear = () =>{
-
+        setCart([]);
     }
 
     const isInCart = (item) =>{
