@@ -6,7 +6,7 @@ import CartContext from './cartContext/CartContext';
 
 const NavBar =() => {
 
-  const {cart, cantidadTotal} = useContext(CartContext);
+  const {cantidadTotal} = useContext(CartContext);
 
 return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
