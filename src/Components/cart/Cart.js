@@ -9,13 +9,26 @@ import {db} from '../../services/firebase/firebase';
 const Cart = () =>{
 
     const {cart, removeItem, clear, getTotal} = useContext(CartContext);
-    const [userInfo,setUserInfo] = useState('');
+    const [userInfo,setUserInfo] = useState({
+        name: '',
+        email: '',
+        tel: '',
+    });
 
     const confirmOrder = () =>{
 
+      const user = {
+          name:document.querySelector('#name').value,
+          email:document.querySelector('#email').value,
+          tel:document.querySelector('#tel').value
+      }
+
+      setUserInfo(user);
+      console.log(user);
+
         const newOrder = {
-            buyer:{name: "Juan", email: "juan@gmail.com", tel: "45553322"},
-            /* buyer : {email : userInfo.email, name:userInfo.name, tel:userInfo.tel}, */
+            buyer:user,
+         /*    buyer : {email : userInfo.email, name:userInfo.name, tel:userInfo.tel}, */
             items: cart,
             date:  Timestamp.fromDate(new Date()), 
             total: getTotal(),
@@ -24,10 +37,13 @@ const Cart = () =>{
         addDoc(collection(db,'orders'),newOrder).then(({id})=>{
             console.log(id);
         })
+
+        clear();
     }
 
     const renderizar = ()=>{
         return(
+            <div>
             <table>
                 <thead>
                 <tr>
@@ -56,12 +72,17 @@ const Cart = () =>{
                             <button className="btnBuy" onClick={(confirmOrder)}>Terminar Compra</button>          
                         </th>
                     </tr>
-                  {/*   <form>
-                        <label>Nombre:</label>
-                        <input type="text"></input>
-                    </form> */}
                 </tfoot>
             </table>
+            <form>
+                <label>Nombre:</label>
+                <input type="text" id="name" name="name"></input>
+                <label>Email:</label>
+                <input type="email" id="email" name="email"></input>
+                <label>Telefono:</label>
+                <input type="text" id="tel" name="tel"></input>
+            </form>
+            </div>
         )
     }
     return <>
