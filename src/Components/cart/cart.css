@@ -15,6 +15,14 @@
     background-color: crimson;
     color: white;
 }
+
+.btnBuy{
+    text-align:center;
+    font-size: 18px;
+    background-color: chartreuse;
+    color: white;
+
+}
 tfoot{
     width: 100%;
 }

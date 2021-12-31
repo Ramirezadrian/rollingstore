@@ -1,12 +1,30 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import CartContext from '../cartContext/CartContext';
 import { Link } from 'react-router-dom';
 import './cart.css'; 
+import  {addDoc, collection, Timestamp} from "firebase/firestore";
+import {db} from '../../services/firebase/firebase';
 
 const Cart = () =>{
 
-    const {cart, removeItem, clear} = useContext(CartContext);
+    const {cart, removeItem, clear, getTotal} = useContext(CartContext);
+    const [userInfo,setUserInfo] = useState('');
+
+    const confirmOrder = () =>{
+
+        const newOrder = {
+            buyer:{name: "Juan", email: "juan@gmail.com", tel: "45553322"},
+            /* buyer : {email : userInfo.email, name:userInfo.name, tel:userInfo.tel}, */
+            items: cart,
+            date:  Timestamp.fromDate(new Date()), 
+            total: getTotal(),
+        };
+
+        addDoc(collection(db,'orders'),newOrder).then(({id})=>{
+            console.log(id);
+        })
+    }
 
     const renderizar = ()=>{
         return(
@@ -31,10 +49,17 @@ const Cart = () =>{
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th COLSPAN="4">
+                        <th COLSPAN="2">
                             <button className="btnVaciar" onClick={(clear)}>Vaciar Carro</button>                        
                         </th>
+                        <th COLSPAN="2">
+                            <button className="btnBuy" onClick={(confirmOrder)}>Terminar Compra</button>          
+                        </th>
                     </tr>
+                  {/*   <form>
+                        <label>Nombre:</label>
+                        <input type="text"></input>
+                    </form> */}
                 </tfoot>
             </table>
         )

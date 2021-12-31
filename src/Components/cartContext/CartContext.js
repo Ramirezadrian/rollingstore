@@ -5,9 +5,7 @@ const Context = React.createContext();
 export const CartContextProvider = ({children})=>{
 
     const [cart, setCart]= useState([]);
-    const [cantidadTotal,setCantidadTotal] = useState(0);
-
-
+ 
     const addItem = (item,quantity)=>{
 
         const flag = isInCart(item);
@@ -19,25 +17,23 @@ export const CartContextProvider = ({children})=>{
         }else{
             setCart([...cart,{item:item,quantity:quantity}]);
         }
-        sumarCantidades();
-        
+            
     console.log(cart);
-    console.log(cantidadTotal);
+   
     }
-
-    const sumarCantidades = () =>{
+    const getTotal = () => {
         let subTotal = 0;
         cart.forEach(e=>{
             subTotal += e.quantity;
-        })
-        setCantidadTotal(subTotal);
+        });
+        return subTotal;
     }
-
+   
     const removeItem = (item) =>{
         
         let cartSinItem = cart.filter(e=> e.item !== item);
         setCart(cartSinItem);
-        sumarCantidades();
+        /* sumarCantidades(); */
     }
 
     const clear = () =>{
@@ -51,7 +47,7 @@ export const CartContextProvider = ({children})=>{
 
     return(
         <Context.Provider value={{
-            cart,cantidadTotal, addItem, removeItem, clear
+            cart,getTotal, addItem, removeItem, clear
         }}>
             {children}
         </Context.Provider>
