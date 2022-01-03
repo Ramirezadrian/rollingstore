@@ -7,9 +7,11 @@ import CartContext from '../cartContext/CartContext';
 
 const ItemDetail = ({product}) => {
 
-   const {addItem} = useContext(CartContext);
+   const {addItem, getTotal} = useContext(CartContext);
  
     const [count, setCount] = useState(0);
+    let emptyCart = getTotal();
+   
 
     const onAdd = (count) => {
         console.log(`Agregado al carrito ${count}`);
@@ -38,7 +40,7 @@ const ItemDetail = ({product}) => {
         </p>
         {count === 0 ? <ItemCount stock={product.stock} initial = "1" onConfirm={onAdd}/>: <></> }
         <div className = "btnTerminarCompra">
-        <Link to="/cart">Terminar Compra</Link>
+        {emptyCart !== 0 ? <Link to="/cart">Terminar Compra</Link>:<></>}
         </div>
         </div>
     )

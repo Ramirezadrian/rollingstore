@@ -9,11 +9,11 @@ import {db} from '../../services/firebase/firebase';
 const Cart = () =>{
 
     const {cart, removeItem, clear, getTotal} = useContext(CartContext);
-    const [userInfo,setUserInfo] = useState({
+ /*    const [userInfo,setUserInfo] = useState({
         name: '',
         email: '',
         tel: '',
-    });
+    }); */
 
     const confirmOrder = () =>{
 
@@ -23,9 +23,7 @@ const Cart = () =>{
           tel:document.querySelector('#tel').value
       }
 
-      setUserInfo(user);
-      console.log(user);
-
+    
         const newOrder = {
             buyer:user,
          /*    buyer : {email : userInfo.email, name:userInfo.name, tel:userInfo.tel}, */
