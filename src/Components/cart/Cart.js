@@ -9,23 +9,30 @@ import {db} from '../../services/firebase/firebase';
 const Cart = () =>{
 
     const {cart, removeItem, clear, getTotal} = useContext(CartContext);
- /*    const [userInfo,setUserInfo] = useState({
+    const [userInfo,setUserInfo] = useState({
         name: '',
         email: '',
         tel: '',
-    }); */
+    });
 
+    const handleInputChange = (event) => {
+       
+        setUserInfo({
+            ...userInfo,
+            [event.target.name] : event.target.value
+        })
+    }
     const confirmOrder = () =>{
 
-      const user = {
+   /*    const user = {
           name:document.querySelector('#name').value,
           email:document.querySelector('#email').value,
           tel:document.querySelector('#tel').value
-      }
+      } */
 
     
         const newOrder = {
-            buyer:user,
+            buyer:userInfo,
          /*    buyer : {email : userInfo.email, name:userInfo.name, tel:userInfo.tel}, */
             items: cart,
             date:  Timestamp.fromDate(new Date()), 
@@ -74,11 +81,11 @@ const Cart = () =>{
             </table>
             <form>
                 <label>Nombre:</label>
-                <input type="text" id="name" name="name"></input>
+                <input type="text" id="name" name="name" onChange={handleInputChange}></input>
                 <label>Email:</label>
-                <input type="email" id="email" name="email"></input>
+                <input type="email" id="email" name="email" onChange={handleInputChange}></input>
                 <label>Telefono:</label>
-                <input type="text" id="tel" name="tel"></input>
+                <input type="text" id="tel" name="tel" onChange={handleInputChange}></input>
             </form>
             </div>
         )

@@ -7,14 +7,14 @@ import {db} from '../../services/firebase/firebase';
 const ItemListContainer = ({greeting}) =>{
 
    const [products, setProducts] = useState([]);
-   const [loading,setLoading] = useState(true);
+/*    const [loading,setLoading] = useState(true); */
    const {categoryId} = useParams();
    
 
     useEffect(() => {
         if(!categoryId){
 
-            setLoading(true);
+            /* setLoading(true); */
             getDocs(collection(db,'ItemCollection')).then((querySnapshot)=>{
                 const products = querySnapshot.docs.map(doc => {
                     return { id:doc.id,...doc.data()}
@@ -23,10 +23,10 @@ const ItemListContainer = ({greeting}) =>{
             }).catch((error)=>{
                 console.log('Error searching item', error);
             }).finally(()=>{
-                setLoading(false);
+            /*     setLoading(false); */
             })
         }else{
-            setLoading(true);
+         /*    setLoading(true); */
             getDocs(query(collection(db,'ItemCollection'),where('category','==',categoryId))).then((querySnapshot)=>{
                 const products = querySnapshot.docs.map(doc => {
                     return { id:doc.id,...doc.data()}
@@ -35,7 +35,7 @@ const ItemListContainer = ({greeting}) =>{
             }).catch((error)=>{
                 console.log('Error searching item', error);
             }).finally(()=>{
-                setLoading(false);
+              /*   setLoading(false); */
             })
         }
        /*  ( async () => {
