@@ -2,7 +2,43 @@
 
 Este proyecto es una e-commerce creada enteramente con React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Primeros pasos
+
+### `ejecutar npm install`
+
+npm install <nombre del paquete> instalará la última versión con el signo ^. Un npm install dentro del contexto de un proyecto npm descargará los paquetes en la carpeta node_modules del proyecto. 
+En AVAILABLE SCRIPTS se explican los comandos mas utilizados.
+
+### `.env`
+
+Crear y configurar .env en la carpeta src con las credenciales necesarias de Firebase
+
+Ejemplo:
+
+REACT_APP_apiKey= AIzaSyBkionNNANianAISNbabABFueBaekrAQ
+REACT_APP_authDomain= dominio.firebaseapp.com
+REACT_APP_projectId= idDelProyecto
+REACT_APP_storageBucket= ejemplo-ejemplo.appspot.com
+REACT_APP_messagingSenderId= 3949220394
+REACT_APP_appId= 1:692833933257:web:5f55e939a33a899c8a8
+
+### `firebase`
+
+Crear los productos con los siguientes tipos de datos:
+
+category:   string (categoria del producto)
+detail:     string (breve explicacion del producto)
+img:        string (ruta de la imagen)
+name:       string (nombre del producto)
+price:      number (precio)
+stock:      number (stock del producto - se actualiza automaticamente con las ventas)
+
+### `rutas y renders`
+
+path='/' : ItemListContainer (home que muestra todos los productos)
+path='/category/:categoryId' : ItemListContainer (filtrado segun categoria seleccionada)
+path='/detail/:paramId' : ItemDetailContainer (detalle del producto seleccionado - selecciona cantidad ha ser agregada)
+path = '/cart' : Cart (carrito de compras con la lista de los productos seleccionados, cantidad, subtotales y total)
 
 ## Available Scripts
 
@@ -70,3 +106,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
