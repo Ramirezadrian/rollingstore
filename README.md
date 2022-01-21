@@ -15,12 +15,12 @@ Crear y configurar .env en la carpeta src con las credenciales necesarias de Fir
 
 Ejemplo:
 
-REACT_APP_apiKey= AIzaSyBkionNNANianAISNbabABFueBaekrAQ
-REACT_APP_authDomain= dominio.firebaseapp.com
-REACT_APP_projectId= idDelProyecto
-REACT_APP_storageBucket= ejemplo-ejemplo.appspot.com
-REACT_APP_messagingSenderId= 3949220394
-REACT_APP_appId= 1:692833933257:web:5f55e939a33a899c8a8
+REACT_APP_apiKey= AIzaSyBkionNNANianAISNbabABFueBaekrAQ \
+REACT_APP_authDomain= dominio.firebaseapp.com \
+REACT_APP_projectId= idDelProyecto \
+REACT_APP_storageBucket= ejemplo-ejemplo.appspot.com \
+REACT_APP_messagingSenderId= 3949220394 \
+REACT_APP_appId= 1:692833933257:web:5f55e939a33a899c8a8 \
 
 ### `firebase`
 
