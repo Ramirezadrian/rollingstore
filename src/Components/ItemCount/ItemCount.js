@@ -20,11 +20,11 @@ function ItemCount({stock, initial, onConfirm}){
     return(
         <div className="itemCount">
            
-            <button onClick = {restarClick}>-</button>
+            <button type="btn" className= "btn btn-warning btn-sm"onClick = {restarClick}>-</button>
             <span>{contador}</span>
-            <button onClick ={sumarClick}>+</button>
+            <button type="btn" className= "btn btn-warning btn-sm" onClick ={sumarClick}>+</button>
             <div className= "btnAdd">
-                <button onClick ={()=> onConfirm(contador)}>Agregar al Carrito</button>
+               {(stock === 0)? <button disabled>Agregar al Carrito</button>:<button type="btn" className= "btn btn-warning btn-sm" onClick ={()=> onConfirm(contador)}>Agregar al Carrito</button>}
             </div>
             <div>
                 <span>Stock disponible: {stock}</span>

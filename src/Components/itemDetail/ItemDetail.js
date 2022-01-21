@@ -20,18 +20,18 @@ const ItemDetail = ({product}) => {
     }
 
     return(
-        <div className="CardItemDet">
-        <div className="ContainerItem">
+        <div className="cardItemDet">
+        <div className="containerItem">
             <h2 className="hDet">
                 Detalle del producto
             </h2>
-            <h2 className="ItemHeaderDet">
+            <h2 className="itemHeaderDet">
                 {product.name}
             </h2>
         </div>
-        <img src={product.img} alt={product.name} className="ItemImgDet"/>
+        <img src={product.img} alt={product.name} className="itemImgDet"/>
       
-        <p className="InfoDet">
+        <p className="infoDet">
          {product.detail}
            
         </p>
@@ -39,8 +39,8 @@ const ItemDetail = ({product}) => {
         Precio: {product.price}
         </p>
         {count === 0 ? <ItemCount stock={product.stock} initial = "1" onConfirm={onAdd}/>: <></> }
-        <div className = "btnTerminarCompra">
-        {emptyCart !== 0 ? <Link to="/cart">Terminar Compra</Link>:<></>}
+        <div>
+        {emptyCart !== 0 ? <Link to="/cart" type="button" className="btn btn-dark">Terminar Compra</Link>:<></>}
         </div>
         </div>
     )

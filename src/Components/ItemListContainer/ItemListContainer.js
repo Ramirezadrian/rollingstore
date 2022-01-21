@@ -38,23 +38,7 @@ const ItemListContainer = ({greeting}) =>{
               /*   setLoading(false); */
             })
         }
-       /*  ( async () => {
-
-            if (categoryId !== undefined){
-
-                const products = await getProductByCategory(categoryId);
-                
-                setProducts(products)
-
-            } else {
-
-                const products = await getProducts()
-                
-                setProducts(products)
-
-            }
-        })() */
-
+      
     }, [categoryId])
 
     return(

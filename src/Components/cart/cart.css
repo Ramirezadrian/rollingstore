@@ -1,28 +1,18 @@
 .prdImg{
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 50px;
+    max-height: 50px;
 
 }
 
-.btnTbl{
-    border-radius: 50px;
-    text-align: center;
+.tblBtn{
+margin: 5px;
 }
 
-.btnVaciar{
-    text-align: center;
-    font-size: 18px;
-    background-color: crimson;
-    color: white;
+.formInput{
+    margin-inline: auto;
+    width: 70vw;
 }
 
-.btnBuy{
-    text-align:center;
-    font-size: 18px;
-    background-color: chartreuse;
-    color: white;
-
-}
-tfoot{
-    width: 100%;
+table{
+    width: 90vw;
 }

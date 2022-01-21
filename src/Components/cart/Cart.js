@@ -3,18 +3,21 @@ import { useContext, useState } from "react";
 import CartContext from '../cartContext/CartContext';
 import { Link } from 'react-router-dom';
 import './cart.css'; 
-import  {addDoc, collection, Timestamp} from "firebase/firestore";
+import  {addDoc, collection, Timestamp, doc, writeBatch, getDoc} from "firebase/firestore";
 import {db} from '../../services/firebase/firebase';
+import NotificationContext from "../notification/NotificationContext";
 
 const Cart = () =>{
 
-    const {cart, removeItem, clear, getTotal} = useContext(CartContext);
+    const {cart, removeItem, clear, getTotal,finalPrice} = useContext(CartContext);
+    const {setNotification} = useContext(NotificationContext);
     const [userInfo,setUserInfo] = useState({
         name: '',
         email: '',
         tel: '',
     });
-
+    const [processingOrder, setProcessingOrder] = useState(false);
+    
     const handleInputChange = (event) => {
        
         setUserInfo({
@@ -22,71 +25,114 @@ const Cart = () =>{
             [event.target.name] : event.target.value
         })
     }
+
     const confirmOrder = () =>{
 
-   /*    const user = {
-          name:document.querySelector('#name').value,
-          email:document.querySelector('#email').value,
-          tel:document.querySelector('#tel').value
-      } */
+        setProcessingOrder(true);
 
-    
         const newOrder = {
             buyer:userInfo,
-         /*    buyer : {email : userInfo.email, name:userInfo.name, tel:userInfo.tel}, */
             items: cart,
             date:  Timestamp.fromDate(new Date()), 
             total: getTotal(),
         };
 
-        addDoc(collection(db,'orders'),newOrder).then(({id})=>{
-            console.log(id);
+        const batch = writeBatch(db);
+        const outOfStock = [];
+
+        newOrder.items.forEach((prod)=>{
+            getDoc(doc(db, 'ItemCollection',prod.item.id)).then((documentSnapshot)=>{
+                if(documentSnapshot.data().stock >= prod.quantity){
+                    batch.update(doc(db,'ItemCollection',documentSnapshot.id),{
+                        stock:documentSnapshot.data().stock - prod.quantity
+                    })
+                }else{
+                    outOfStock.push({id:documentSnapshot.id,...documentSnapshot.data()});
+                }
+            })
         })
 
-        clear();
-    }
+        if(outOfStock.length === 0){
+            addDoc(collection(db,'orders'),newOrder).then(({id})=>{
+                batch.commit().then(()=>{
+                    setNotification('success', `Orden de compra: ${id}` );
+                               
+            })
+        }).catch((error)=>{
+            console.log(error)
+             setNotification('error',`Error ejecutando la orden: ${error}`)
+        }).finally(()=>{
+            setProcessingOrder(false);
+            clear();
+            
+            
+            
+        })
+         }
+     }
+
+        if(processingOrder){
+            return <h1>Su orden esta siendo procesada...</h1>
+        }
+    
 
     const renderizar = ()=>{
+        const total = finalPrice();
         return(
-            <div>
-            <table>
-                <thead>
-                <tr>
-                    <th>Imagen</th>
-                    <th>Descripcion</th>
-                    <th>Cantidad</th>
+            <div >
+            <table className="table">
+                <thead >
+                <tr className="table-dark">
+                    <th >Imagen</th>
+                    <th >Descripcion</th>
+                    <th >Cantidad</th>
+                    <th >Precio unitario</th>
+                    <th >Subtotal</th>
+                    <th ></th>
                 </tr>
                 </thead>
                 <tbody>
                 {cart.map(producto =>{
                 return <tr>
-                        <th><Link key = {producto.item.id} to={`/detail/${producto.item.id}`}><img src={producto.item.img} className="prdImg" alt="Imagen"/></Link></th>
-                        <th>{producto.item.name}</th>
-                        <th>{producto.quantity}</th>
-                        <th><button className="btnTbl" onClick={()=> removeItem(producto.item)}>X</button></th>
+                        <td><Link key = {producto.item.id} to={`/detail/${producto.item.id}`}><img src={producto.item.img} className="prdImg" alt="Imagen"/></Link></td>
+                        <td>{producto.item.name}</td>
+                        <td>{producto.quantity}</td>
+                        <td>${producto.item.price}</td>
+                        <td>${producto.quantity * producto.item.price}</td>
+                        
+                        <td><button type="button" className="btn btn-danger"  onClick={()=> removeItem(producto.item)}>Eliminar</button></td>
     
                     </tr>
                 })}
                 </tbody>
                 <tfoot>
-                    <tr>
-                        <th COLSPAN="2">
-                            <button className="btnVaciar" onClick={(clear)}>Vaciar Carro</button>                        
-                        </th>
-                        <th COLSPAN="2">
-                            <button className="btnBuy" onClick={(confirmOrder)}>Terminar Compra</button>          
+                    
+                    <tr className="table-dark ">
+                        <th COLSPAN="6">
+                            <button type = "button" className="btn btn-outline-danger tblBtn" onClick={(clear)}>Vaciar Carro</button>       
+                            <button type="button" className="btn btn-outline-success tblBtn" onClick={(confirmOrder)}>Terminar Compra</button>                 
                         </th>
                     </tr>
                 </tfoot>
             </table>
-            <form>
-                <label>Nombre:</label>
-                <input type="text" id="name" name="name" onChange={handleInputChange}></input>
-                <label>Email:</label>
-                <input type="email" id="email" name="email" onChange={handleInputChange}></input>
-                <label>Telefono:</label>
-                <input type="text" id="tel" name="tel" onChange={handleInputChange}></input>
-            </form>
+            <h3>TOTAL ${total}</h3>
+            
+         
+            <form className="formInput">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" onChange={handleInputChange}></input>
+                <label for="name">Nombre</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" onChange={handleInputChange}></input>
+                <label for="email">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="tel" name="tel" placeholder="Password" onChange={handleInputChange}></input>
+                <label for="tel">Telefono</label>
+            </div>
+   
+            </form>    
             </div>
         )
     }

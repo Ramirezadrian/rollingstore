@@ -7,16 +7,17 @@
     border: 1px solid #e1e1e1;
     border-radius: 10px;
 }
-.CardItemDet{
-    width: 80vw;  
-    background-color: rgb(174, 241, 147);
-    border: 1px solid #1ef3b3;
+.cardItemDet{
+    width: 60vw;  
+    background-color: rgb(80, 85, 78);
+    border: 1px solid #3c4240;
     border-radius: 15px;
     display:inline-block;
 }
 .hDet{
     font-weight: 800;
     margin: 20px;
+    color:white;
 
 }
 .precioDet{
@@ -24,7 +25,7 @@
     color:crimson;
     font-weight: 600;
 }
-.ContainerItem {
+.containerItem {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
@@ -35,7 +36,7 @@
     display: flex;
     justify-content: center;
 }
-.ItemHeaderDet{
+.itemHeaderDet{
     display: flex;
     justify-content: center;
     color: crimson;
@@ -48,7 +49,7 @@
     /* flex-direction: column; */
     justify-content: space-around;
 }
-.InfoDet{
+.infoDet{
     font-size: 20px;
     font-weight: 700;
     display: flex;
@@ -84,9 +85,9 @@
     object-position: center;
 }
 
-.ItemImgDet{
-    width: 300px;
-    height: 300px;
+.itemImgDet{
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     object-position: center;
 }
