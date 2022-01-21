@@ -63,10 +63,7 @@ const Cart = () =>{
              setNotification('error',`Error ejecutando la orden: ${error}`)
         }).finally(()=>{
             setProcessingOrder(false);
-            clear();
-            
-            
-            
+            clear();            
         })
          }
      }

@@ -10,12 +10,12 @@ import {getDoc,doc} from 'firebase/firestore';
 const ItemDetailContainer = () =>{
 
    const [product, setProduct] = useState([]);
-   /* const [loading,setLoading] =useState(true); */
+   const [loading,setLoading] =useState(true);
    const {paramId} = useParams();
 
 console.log(paramId)
     useEffect(() => {
-        /* setLoading(true); */
+        setLoading(true);
         getDoc(doc(db,'ItemCollection', paramId)).then((querySnapshot)=>{
             const product = {id:querySnapshot.id,...querySnapshot.data()}
             setProduct(product);
@@ -23,14 +23,16 @@ console.log(paramId)
         }).catch((err) => {
             console.log(err);
         }).finally(()=>{
-          /*   setLoading(false); */
+            setLoading(false);
         })
         
         return (() => {
             setProduct();
         })
     }, [paramId])
-    
+    if(loading){
+        return(<h1>Cargando...</h1>)
+    }
     return(
         <div>
             
